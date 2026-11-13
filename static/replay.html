@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Replay · RightCall</title>
+<meta name="description" content="Same patient, two outcomes: follow any finished patient through today's way and through RightCall, refusal by refusal.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ff4a1c'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/site.css">
+</head>
+<body data-page="replay" class="passthru">
+<a class="skip" href="#main">Skip to content</a>
+<header id="nav"></header><script src="/static/js/core.js"></script>
+<div id="sky" aria-hidden="true"></div>
+<canvas id="world" aria-label="3D city showing the selected patient's two journeys: faint red arcs for today's way, with a cross at each hospital that refused; a bright cyan arc for RightCall. Drag to turn the city."></canvas>
+<div id="labels3d" aria-hidden="true"></div><div id="flash" aria-hidden="true"></div>
+
+<main id="main" class="page">
+  <header class="phead compact">
+    <span class="idx" aria-hidden="true">04</span>
+    <p class="kicker">Replay · same patient, two outcomes</p>
+    <h1 class="title">Follow one patient through both cities.</h1>
+    <p class="lede">Every patient below was handled twice: once today's way, once by RightCall, at the same moment on the same roads. Pick one to trace both journeys on the map.</p>
+  </header>
+
+  <div class="sumstrip glass" id="sum" aria-live="polite"><p class="empty">Loading finished patients…</p></div>
+
+  <div class="replay">
+    <section class="glass pad" aria-labelledby="listT">
+      <h2 class="kicker" id="listT" style="margin-bottom:12px">Patients</h2>
+      <div class="seg" role="group" aria-label="Filter patients" id="filt" style="margin-bottom:12px;flex-wrap:wrap">
+        <button type="button" data-f="differ" aria-pressed="true">Differ</button><button type="button" data-f="better" aria-pressed="false">RightCall faster</button><button type="button" data-f="worse" aria-pressed="false">Slower</button><button type="button" data-f="all" aria-pressed="false">All</button>
+      </div>
+      <div class="scroll" id="list" style="max-height:62vh"></div>
+    </section>
+    <div class="stage" aria-hidden="true"></div>
+    <section class="glass pad" aria-labelledby="detT" id="detail" aria-live="polite">
+      <h2 class="kicker" id="detT">Journey</h2>
+      <p class="empty">Choose a patient.</p>
+    </section>
+  </div>
+</main>
+<div class="caption" id="caption" hidden role="status"></div>
+<footer class="foot"><span>Next: <a href="/proof">is it just this city? Run 100 →</a></span><span>Simulated city. Times are simulated minutes from pickup to a bed.</span></footer>
+<script src="/static/js/map2d.js"></script>
+<script type="module" src="/static/js/world3d.js"></script>
+<script src="/static/js/replay.js"></script>
+</body>
+</html>

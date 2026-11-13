@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof · RightCall</title>
+<meta name="description" content="Benchmark RightCall against nearest-hospital dispatch, phone-ahead, and RightCall with its fleet evidence removed, over many simulated cities.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ff4a1c'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/site.css">
+</head>
+<body data-page="proof">
+<a class="skip" href="#main">Skip to content</a>
+<header id="nav"></header><script src="/static/js/core.js"></script>
+<div id="sky" aria-hidden="true"></div>
+<canvas id="world" aria-hidden="true"></canvas>
+<div id="labels3d" aria-hidden="true"></div><div id="flash" aria-hidden="true"></div>
+
+<main id="main" class="page">
+  <header class="phead">
+    <span class="idx" aria-hidden="true">05</span>
+    <p class="kicker">Proof · is it just one lucky city?</p>
+    <h1 class="title">Run it on cities nobody tuned it for.</h1>
+    <p class="lede">Each benchmark city is a fresh seed the engine was never tuned on, run for three simulated hours with random hospital surges. Four policies see exactly the same patients. One of them is RightCall with its fleet evidence switched off, so you can see what the mechanism itself adds.</p>
+  </header>
+
+  <div class="grid2">
+    <section class="glass pad" aria-labelledby="benchT">
+      <h2 class="title" id="benchT" style="font-size:26px">Benchmark</h2>
+      <div class="row" style="margin-top:14px">
+        <div class="seg" role="group" aria-label="Number of cities" id="nSeg"><button type="button" data-n="20" aria-pressed="true">20 cities</button><button type="button" data-n="60" aria-pressed="false">60</button><button type="button" data-n="100" aria-pressed="false">100</button></div>
+        <label class="switch"><input type="checkbox" id="bDrop"><span></span>Drop-and-go crews</label>
+      </div>
+      <div class="row" style="margin-top:14px"><button class="btn or" id="bRun" type="button">Run benchmark</button><button class="btn sm" id="bCancel" type="button" disabled>Cancel</button></div>
+      <div class="progress" id="bProg" hidden style="margin-top:14px"><i style="width:0"></i><span>starting…</span></div>
+      <div id="bOut" aria-live="polite" style="margin-top:14px"><p class="empty">Not run yet in this server session. 20 cities take about 8 seconds.</p></div>
+    </section>
+    <section class="glass pad lim" aria-labelledby="polT">
+      <h2 class="title" id="polT" style="font-size:26px">The four policies</h2>
+      <ul style="margin-top:12px">
+        <li><b style="color:#fff">Nearest</b>: today's common practice. Drive to the nearest capable hospital; if refused, drive to the next nearest.</li>
+        <li><b style="color:#fff">Phone ahead</b>: the honest non-AI baseline. Phone the nearest hospital first, then the next, until one says yes.</li>
+        <li><b style="color:#ffd27a">RightCall, evidence removed</b>: the same engine and the same confirm call, but every hospital looks average. If this did as well, the fleet evidence would be pointless.</li>
+        <li><b class="cy">RightCall</b>: rank on fleet evidence, phone the top pick, sickest first, re-route if it saves more than 5 minutes.</li>
+      </ul>
+      <p class="small" style="margin-top:14px">Read the turn-away column first. It is the robust result. Average time also improves in most cities, but not in all of them, and the strip chart shows every city so you can see the spread.</p>
+    </section>
+  </div>
+
+  <section class="glass pad" aria-labelledby="evT" style="margin-top:16px">
+    <div class="row" style="justify-content:space-between"><h2 class="title" id="evT" style="font-size:26px">Fleet evidence log · this city</h2>
+      <div class="row"><a class="btn xs" href="/api/export/evidence.csv" download>Download evidence CSV</a><a class="btn xs" href="/api/export/decisions.csv" download>Download decisions CSV</a></div></div>
+    <p class="small" style="margin-top:6px">Everything RightCall knows comes from these rows. Nothing else about a hospital is ever read by the ranking.</p>
+    <div class="row" style="margin:14px 0">
+      <label class="field">Hospital <select id="evHos"><option value="">All</option></select></label>
+      <label class="field">Type <select id="evType"><option value="">All</option><option value="handover_wait">handover wait</option><option value="turn_away">turn-away</option><option value="call_yes">call: yes</option><option value="call_no">call: no</option><option value="call_busy">call: busy</option><option value="arrive">arrival</option><option value="escalation">escalation</option></select></label>
+      <button class="btn xs" id="evRefresh" type="button">Refresh</button><span class="fine" id="evCount"></span>
+    </div>
+    <div class="scroll"><table class="t" id="evTable"><thead><tr><th>Sim time</th><th>Hospital</th><th>Event</th><th class="n">Value</th><th class="n">Ambulance</th><th>Note</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="runsT" style="margin-top:16px">
+    <h2 class="kicker" id="runsT" style="margin:24px 0 12px">Saved runs (one per reset, stored in SQLite)</h2>
+    <div class="runs" id="runs"></div>
+  </section>
+</main>
+<footer class="foot"><span>Next: <a href="/limits">what is real, what is simulated →</a></span><span>Simulation only. These numbers show how the mechanism behaves, not what would happen on real roads.</span></footer>
+<script src="/static/js/map2d.js"></script>
+<script type="module" src="/static/js/world3d.js"></script>
+<script src="/static/js/proof.js"></script>
+</body>
+</html>

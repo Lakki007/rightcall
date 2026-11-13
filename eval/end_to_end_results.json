@@ -1,0 +1,51 @@
+{
+ "triage_end_to_end": {
+  "condition": "busy city (0.34 calls/min), 10 ambulances, 100 held-out cities; reports drawn from samples/triage_adversarial.json",
+  "perfect": {
+   "critical_call_to_bed": 45.12,
+   "severity_weighted_call_to_bed": 55.06,
+   "unfinished_critical": 7
+  },
+  "model": {
+   "critical_call_to_bed": 48.55,
+   "severity_weighted_call_to_bed": 58.25,
+   "unfinished_critical": 27
+  },
+  "none": {
+   "critical_call_to_bed": 71.92,
+   "severity_weighted_call_to_bed": 71.81,
+   "unfinished_critical": 305
+  }
+ },
+ "oracle_ceiling": {
+  "phone": {
+   "ta_per_100": 5.62,
+   "mean": 21.35,
+   "p90": 43.0
+  },
+  "blind": {
+   "ta_per_100": 4.9,
+   "mean": 20.72,
+   "p90": 40.9
+  },
+  "ours": {
+   "ta_per_100": 2.11,
+   "mean": 20.4,
+   "p90": 39.4
+  },
+  "oracle": {
+   "ta_per_100": 0.96,
+   "mean": 18.16,
+   "p90": 34.3
+  },
+  "share_of_possible_turnaway_reduction_captured": 0.75
+ },
+ "nowcast_mae_minutes": {
+  "n": 1899,
+  "ours": 8.99,
+  "flat": 11.51,
+  "last": 7.73,
+  "ewma": 7.74,
+  "note": "error of the wait estimate at arrival vs the handover wait that ambulance then had; 40 held-out cities"
+ }
+}

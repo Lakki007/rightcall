@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live · RightCall</title>
+<meta name="description" content="Two copies of the same simulated city, same patients: today's nearest-hospital dispatch versus RightCall. Break it and watch.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ff4a1c'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/site.css">
+</head>
+<body data-page="live">
+<a class="skip" href="#lanesT">Skip to the two cities</a>
+<header id="nav"></header><script src="/static/js/core.js"></script>
+<div id="sky" aria-hidden="true"></div>
+<canvas id="world" aria-hidden="true"></canvas>
+<div id="labels3d" aria-hidden="true"></div><div id="flash" aria-hidden="true"></div>
+
+<main id="main" class="page">
+  <header class="phead compact">
+    <span class="idx" aria-hidden="true">03</span>
+    <p class="kicker">Live · same city, same patients, twice</p>
+    <h1 class="title">Break the city. Count who gets turned away.</h1>
+    <p class="lede">Left: today's way, the nearest capable hospital. Right: RightCall. Both share one clock, one road network and one stream of emergencies. Only the hospital choice differs.</p>
+  </header>
+
+  <div class="toolbar glass" role="toolbar" aria-label="Simulation controls">
+    <div class="clock"><span class="fine">sim time</span><b id="clock">--:--</b></div>
+    <button class="btn sm white" id="playBtn" type="button" aria-pressed="false">▶ Play</button>
+    <div class="seg" role="group" aria-label="Simulation speed" id="speedSeg"><button type="button" data-v="10">10×</button><button type="button" data-v="30">30×</button><button type="button" data-v="60">60×</button><button type="button" data-v="120">120×</button></div>
+    <label class="field">City <input id="seedInp" type="number" min="1" max="99999" step="1" inputmode="numeric" aria-label="City seed, 1 to 99999"></label>
+    <button class="btn sm" id="resetBtn" type="button">New city / reset</button>
+    <span style="flex:1"></span>
+    <button class="btn sm or" id="demoBtn" type="button">▶ Guided demo · 2 min</button>
+  </div>
+
+  <h2 class="sr" id="lanesT">The two cities</h2>
+  <div class="lanes">
+    <section class="lane glass" aria-labelledby="laneA">
+      <header><div><h3 id="laneA">Today's way</h3><p>Nearest capable hospital. If it refuses at the door, drive on to the next nearest.</p></div><span class="badge">BASELINE</span></header>
+      <canvas id="mapBase" aria-label="Map of today's-way city. Click a hospital to select it."></canvas>
+      <dl class="metrics" id="mBase"></dl>
+    </section>
+    <section class="lane glass ours" aria-labelledby="laneB">
+      <header><div><h3 id="laneB">RightCall</h3><p>Ranks on fleet evidence only, phones the top pick once, sickest first. Tower = its estimate, not the truth.</p></div><span class="badge">RIGHTCALL</span></header>
+      <canvas id="mapOurs" aria-label="Map of the RightCall city. Hospital towers show RightCall's estimated wait. Click a hospital to select it."></canvas>
+      <dl class="metrics" id="mOurs"></dl>
+    </section>
+  </div>
+  <div class="keyrow" aria-label="Map key">
+    <span><i class="k" style="background:var(--gr)"></i>short wait</span><span><i class="k" style="background:var(--am)"></i>building</span><span><i class="k" style="background:var(--rd)"></i>choking</span><span><i class="k" style="background:var(--gy)"></i>unknown (no recent evidence)</span>
+    <span><i class="k" style="background:var(--am);border-radius:1px;height:4px"></i>ambulance parked at gate</span><span><i class="k" style="border:2px solid var(--rd);background:none"></i>patient waiting (colour = severity)</span>
+    <label class="switch"><input type="checkbox" id="truthChk"><span></span>Show hidden truth (judge only)</label>
+  </div>
+
+  <div class="panels">
+    <section class="glass pad" aria-labelledby="chaosT">
+      <h3 id="chaosT">Break the city</h3>
+      <p class="small" id="selHint">Select a hospital on either map, or in the Hospitals tab.</p>
+      <div class="row" style="margin-top:12px"><button class="btn sm" id="surgeBtn" type="button" disabled>Flood with walk-ins</button><button class="btn sm danger" id="closeBtn" type="button" disabled>Close its ED</button><button class="btn sm" id="restoreBtn" type="button" disabled>Restore</button></div>
+      <p class="fine" style="margin-top:8px">RightCall is never told about any of these. It finds out only from what crews experience next.</p>
+      <div class="row" style="margin-top:10px"><button class="btn sm" id="breakBtn" type="button">Break down an ambulance</button></div>
+      <p class="fine" style="margin-top:6px">The same ambulance fails in both cities for 60 min. Its patient goes back to the queue, and a sicker patient may take an ambulance that is driving to a minor call.</p>
+      <hr class="rule">
+      <label class="switch"><input type="checkbox" id="rainChk"><span></span>Heavy rain on every road</label>
+      <button class="btn xs" id="liveRainBtn" type="button" style="margin:2px 0 8px 52px">Use live Hyderabad rain</button>
+      <label class="switch"><input type="checkbox" id="dropChk"><span></span>Drop-and-go crews (leave after 15 min; hides the wait signal)</label>
+      <label class="switch"><input type="checkbox" id="manualChk"><span></span>I answer the confirm calls myself</label>
+    </section>
+
+    <section class="glass pad" aria-labelledby="repT">
+      <h3 id="repT">Report an emergency</h3>
+      <p class="small">English, Hindi or Telugu typed in Roman letters. Name an area, or pick a spot on the RightCall map.</p>
+      <label class="sr" for="repText">Emergency report</label>
+      <textarea id="repText" rows="3" maxlength="500" style="margin-top:10px" placeholder="e.g. Uppal ke paas lorry ne takkar maari, 3 log injured, bahut khoon"></textarea>
+      <div class="chips" id="examples" aria-label="Example reports"></div>
+      <div class="row" style="margin-top:12px"><button class="btn sm" id="pickBtn" type="button" aria-pressed="false">Pick location on map</button><button class="btn sm" id="analyseBtn" type="button">Analyse only</button><button class="btn sm or" id="dispatchBtn" type="button">Triage + dispatch</button></div>
+      <div id="repOut" aria-live="polite" style="margin-top:12px"></div>
+      <p class="fine" id="triInfo" style="margin-top:10px"></p>
+    </section>
+
+    <section class="glass pad wide2" aria-labelledby="insideT">
+      <h3 id="insideT">Inside RightCall</h3>
+      <div class="seg tabs" role="tablist" aria-label="RightCall details">
+        <button role="tab" type="button" aria-selected="true" data-tab="dec" id="t-dec" aria-controls="tab-dec">Decisions</button><button role="tab" type="button" aria-selected="false" data-tab="hos" id="t-hos" aria-controls="tab-hos">Hospitals</button><button role="tab" type="button" aria-selected="false" data-tab="que" id="t-que" aria-controls="tab-que">Waiting &amp; dispatch</button>
+      </div>
+      <div class="scroll" id="tab-dec" role="tabpanel" aria-labelledby="t-dec"></div>
+      <div class="scroll" id="tab-hos" role="tabpanel" aria-labelledby="t-hos" hidden></div>
+      <div class="scroll" id="tab-que" role="tabpanel" aria-labelledby="t-que" hidden></div>
+    </section>
+  </div>
+</main>
+
+<dialog id="callDlg" aria-labelledby="callTitle">
+  <p class="kicker" style="color:var(--or2)">Confirm call · ringing</p>
+  <h2 id="callTitle" class="title" style="font-size:30px;margin:8px 0"></h2>
+  <p id="callBody"></p><p class="fine" id="callFine" style="margin-top:8px"></p>
+  <div class="row" style="margin-top:18px"><button class="btn white" data-ans="yes" type="button">Yes, send them</button><button class="btn" data-ans="busy" type="button">Busy, long wait</button><button class="btn danger" data-ans="no" type="button">No, we're full</button></div>
+  <button class="btn xs" id="autoAns" type="button" style="margin-top:14px">Stop asking me: let the hospitals answer from now on</button>
+</dialog>
+<div class="caption" id="caption" hidden role="status"></div>
+<footer class="foot"><span>Next: <a href="/replay">follow one patient through both cities →</a></span><span>Simulated city. "Hidden truth" is what RightCall cannot see.</span></footer>
+<script src="/static/js/map2d.js"></script>
+<script type="module" src="/static/js/world3d.js"></script>
+<script src="/static/js/live.js"></script>
+</body>
+</html>

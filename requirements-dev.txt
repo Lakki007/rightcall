@@ -1,0 +1,3 @@
+-r requirements.txt
+# needed only to run the tests
+httpx2==2.13.1

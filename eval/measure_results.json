@@ -1,0 +1,51 @@
+{
+ "conditions": "2 vCPU container, server and load generator on the same machine, Python 3.13.18",
+ "cpu_percent_playing_120x_no_viewers": 0.3,
+ "rss_mb_after_20s_play": 180,
+ "latency_ms": {
+  "state": {
+   "p50": 2.7,
+   "p95": 3.3
+  },
+  "world": {
+   "p50": 2.7,
+   "p95": 3.8
+  },
+  "rank": {
+   "p50": 1.4,
+   "p95": 1.9
+  },
+  "compare": {
+   "p50": 2.3,
+   "p95": 2.6
+  },
+  "evidence": {
+   "p50": 1.6,
+   "p95": 2.0
+  },
+  "health": {
+   "p50": 1.7,
+   "p95": 2.4
+  },
+  "report_dry_run": {
+   "p50": 3.1,
+   "p95": 4.7
+  },
+  "page_home": {
+   "p50": 1.8,
+   "p95": 2.2
+  }
+ },
+ "state_payload_kb": 12.4,
+ "websocket_kbps_per_viewer": 1018.0,
+ "load_30_polling_clients": {
+  "requests": 4423,
+  "errors": 0,
+  "per_s": 294.9,
+  "p50_ms": 99.1,
+  "p95_ms": 142.7
+ },
+ "benchmark_100_cities_x4_s": 19.5,
+ "rss_mb_end": 185,
+ "page_weight_kb_home_uncompressed": 780
+}

@@ -1,0 +1,15 @@
+# One-click Render deployment (free web service). The SQLite file lives on the instance disk and is reset on redeploy,
+# which is acceptable: every record in it is simulated. Set RIGHTCALL_CONTROL_KEY in the dashboard (never commit it).
+services:
+  - type: web
+    name: rightcall
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: RIGHTCALL_TRUST_PROXY
+        value: "1"
+      - key: RIGHTCALL_CONTROL_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false

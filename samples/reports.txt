@@ -1,0 +1,7 @@
+# Paste any line into "Report an emergency". Expected result is after the arrow.
+Ameerpet lo maa nanna ki gunde noppi, oopiri adatam ledu, please fast        -> cardiac, critical, dispatched at Ameerpet
+Uppal ke paas lorry ne takkar maari, 3 log injured, bahut khoon beh raha hai  -> trauma, critical, 3 patients, dispatched at Uppal
+My mother has mild fever since two days, need to go to hospital from Kukatpally -> general, routine
+hello what is the cricket score today                                         -> rejected: no emergency found
+my friend fell from stairs leg fracture                                       -> asks for a location (name an area or pick on the map)
+help                                                                          -> rejected: too short

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mechanism · RightCall</title>
+<meta name="description" content="Drop a patient anywhere on the simulated city and see which hospital RightCall would call, why, and what it would pick without fleet evidence.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ff4a1c'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/site.css">
+</head>
+<body data-page="mechanism" class="passthru">
+<a class="skip" href="#main">Skip to content</a>
+<header id="nav"></header><script src="/static/js/core.js"></script>
+<div id="sky" aria-hidden="true"></div>
+<canvas id="world" aria-label="3D city. Click any point on the ground to drop a patient there; the arcs show the hospitals RightCall would consider, brightest first. The area list on the right does the same with a keyboard."></canvas>
+<div id="labels3d" aria-hidden="true"></div><div id="flash" aria-hidden="true"></div>
+
+<main id="main" class="page">
+  <header class="phead compact">
+    <span class="idx" aria-hidden="true">02</span>
+    <p class="kicker">Mechanism</p>
+    <h1 class="title">Drop a patient. Watch who gets the call.</h1>
+    <p class="lede">RightCall never sees inside a hospital. It sees only what ambulances report, scores every capable hospital, and phones the best one first. Click anywhere on the city.</p>
+  </header>
+
+  <div class="mech">
+    <section class="glass pad" aria-labelledby="sigT">
+      <h2 class="sr" id="sigT">The signals</h2>
+      <p class="kicker" style="margin:4px 0 10px 16px">What the fleet sees · hover to light it up</p>
+      <article class="sig" data-hl="parked" tabindex="0"><div class="ic" style="color:var(--am)">P</div><div><h3>Parked now</h3><p>Ambulances still waiting at a hospital gate, and for how long. A queue you can count from GPS.</p></div></article>
+      <article class="sig" data-hl="wait" tabindex="0"><div class="ic" style="color:#fff">W</div><div><h3>Handover wait</h3><p>How long the last few crews stayed before their patient was taken in. Recent waits count more (half-life 10 min).</p></div></article>
+      <article class="sig" data-hl="refusal" tabindex="0"><div class="ic" style="color:var(--rd)">T</div><div><h3>Turn-aways</h3><p>A crew arrives, then leaves with the patient still aboard, or taps "refused". The risk fades over about an hour.</p></div></article>
+      <article class="sig" data-hl="unknown" tabindex="0"><div class="ic" style="color:var(--gy)">?</div><div><h3>No evidence</h3><p>No crew has been there lately. The hospital is shown as unknown and assumed to be average, never free. The call decides.</p></div></article>
+      <div class="formula">score = <b>drive</b> + <b>estimated wait</b> + 40 × <b>turn-away risk</b><br><span class="small">All in minutes; lower is better. 40 min is the cost we charge for a likely refusal: the drive there, the wait at the gate, the drive on.</span></div>
+    </section>
+
+    <div class="stage" aria-hidden="true"><div class="pickhint" id="pickHint"><p>Click anywhere on the city to drop a patient</p></div></div>
+
+    <section class="glass pad" aria-labelledby="rankT" aria-live="polite">
+      <h2 class="kicker" id="rankT" style="margin-bottom:12px">The decision</h2>
+      <div class="row">
+        <label class="field">Pickup at <select id="areaSel" aria-label="Pickup area"><option value="">choose an area…</option></select></label>
+        <button class="btn xs" id="randBtn" type="button">Random spot</button>
+      </div>
+      <div class="seg" role="group" aria-label="Patient condition" style="margin-top:12px" id="kindSeg">
+        <button type="button" data-k="general" aria-pressed="true">General</button><button type="button" data-k="cardiac" aria-pressed="false">Cardiac</button><button type="button" data-k="trauma" aria-pressed="false">Trauma</button>
+      </div>
+      <div id="rankOut" style="margin-top:16px"><p class="empty">No patient yet. Click the city or choose an area.</p></div>
+    </section>
+  </div>
+</main>
+<footer class="foot"><span>Next: <a href="/live">watch it run against today's way →</a></span><span>Simulated city. Rankings use fleet evidence only, never the hidden hospital state.</span></footer>
+<script src="/static/js/map2d.js"></script>
+<script type="module" src="/static/js/world3d.js"></script>
+<script src="/static/js/mechanism.js"></script>
+</body>
+</html>

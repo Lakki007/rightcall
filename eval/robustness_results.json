@@ -1,0 +1,682 @@
+{
+ "fresh": {
+  "cond": "fresh",
+  "cities": 200,
+  "nearest": {
+   "ta_per_100_incidents": 19.42,
+   "ta_per_100_transports": 19.58,
+   "mean": 23.05,
+   "p90": 48.7,
+   "calls_per_transport": 0.0,
+   "unfinished": 75
+  },
+  "phone": {
+   "ta_per_100_incidents": 5.31,
+   "ta_per_100_transports": 5.33,
+   "mean": 21.18,
+   "p90": 42.9,
+   "calls_per_transport": 1.25,
+   "unfinished": 43
+  },
+  "blind": {
+   "ta_per_100_incidents": 4.58,
+   "ta_per_100_transports": 4.6,
+   "mean": 20.54,
+   "p90": 41.0,
+   "calls_per_transport": 1.28,
+   "unfinished": 31
+  },
+  "ours": {
+   "ta_per_100_incidents": 1.88,
+   "ta_per_100_transports": 1.88,
+   "mean": 19.98,
+   "p90": 38.9,
+   "calls_per_transport": 1.12,
+   "unfinished": 14
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -3.35,
+   "ta_ci95": [
+    -4.06,
+    -2.7
+   ],
+   "fewer": 121,
+   "tied": 63,
+   "more": 16,
+   "time_diff_min": -1.2,
+   "time_ci95": [
+    -1.55,
+    -0.85
+   ],
+   "faster": 128
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -2.61,
+   "ta_ci95": [
+    -3.29,
+    -1.97
+   ],
+   "fewer": 100,
+   "tied": 82,
+   "more": 18,
+   "time_diff_min": -0.56,
+   "time_ci95": [
+    -0.9,
+    -0.23
+   ],
+   "faster": 111
+  }
+ },
+ "no_surges": {
+  "cond": "no_surges",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 8.31,
+   "ta_per_100_transports": 8.34,
+   "mean": 19.29,
+   "p90": 40.1,
+   "calls_per_transport": 0.0,
+   "unfinished": 16
+  },
+  "phone": {
+   "ta_per_100_incidents": 2.88,
+   "ta_per_100_transports": 2.88,
+   "mean": 18.6,
+   "p90": 38.0,
+   "calls_per_transport": 1.1,
+   "unfinished": 9
+  },
+  "blind": {
+   "ta_per_100_incidents": 1.79,
+   "ta_per_100_transports": 1.79,
+   "mean": 17.96,
+   "p90": 35.9,
+   "calls_per_transport": 1.11,
+   "unfinished": 6
+  },
+  "ours": {
+   "ta_per_100_incidents": 0.83,
+   "ta_per_100_transports": 0.83,
+   "mean": 17.52,
+   "p90": 33.3,
+   "calls_per_transport": 1.06,
+   "unfinished": 2
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -1.97,
+   "ta_ci95": [
+    -2.56,
+    -1.42
+   ],
+   "fewer": 50,
+   "tied": 45,
+   "more": 5,
+   "time_diff_min": -1.09,
+   "time_ci95": [
+    -1.59,
+    -0.61
+   ],
+   "faster": 65
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -0.94,
+   "ta_ci95": [
+    -1.4,
+    -0.49
+   ],
+   "fewer": 38,
+   "tied": 54,
+   "more": 8,
+   "time_diff_min": -0.45,
+   "time_ci95": [
+    -0.86,
+    -0.06
+   ],
+   "faster": 59
+  }
+ },
+ "quiet": {
+  "cond": "quiet",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 10.42,
+   "ta_per_100_transports": 10.43,
+   "mean": 18.48,
+   "p90": 35.6,
+   "calls_per_transport": 0.0,
+   "unfinished": 3
+  },
+  "phone": {
+   "ta_per_100_incidents": 2.1,
+   "ta_per_100_transports": 2.1,
+   "mean": 17.51,
+   "p90": 32.8,
+   "calls_per_transport": 1.12,
+   "unfinished": 2
+  },
+  "blind": {
+   "ta_per_100_incidents": 1.77,
+   "ta_per_100_transports": 1.78,
+   "mean": 17.3,
+   "p90": 32.2,
+   "calls_per_transport": 1.13,
+   "unfinished": 1
+  },
+  "ours": {
+   "ta_per_100_incidents": 1.4,
+   "ta_per_100_transports": 1.4,
+   "mean": 17.06,
+   "p90": 30.5,
+   "calls_per_transport": 1.08,
+   "unfinished": 2
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -0.71,
+   "ta_ci95": [
+    -1.47,
+    0.03
+   ],
+   "fewer": 16,
+   "tied": 77,
+   "more": 7,
+   "time_diff_min": -0.46,
+   "time_ci95": [
+    -0.9,
+    -0.01
+   ],
+   "faster": 49
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -0.31,
+   "ta_ci95": [
+    -0.8,
+    0.22
+   ],
+   "fewer": 14,
+   "tied": 80,
+   "more": 6,
+   "time_diff_min": -0.25,
+   "time_ci95": [
+    -0.68,
+    0.18
+   ],
+   "faster": 42
+  }
+ },
+ "busy": {
+  "cond": "busy",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 26.15,
+   "ta_per_100_transports": 27.28,
+   "mean": 25.46,
+   "p90": 54.3,
+   "calls_per_transport": 0.0,
+   "unfinished": 258
+  },
+  "phone": {
+   "ta_per_100_incidents": 7.16,
+   "ta_per_100_transports": 7.37,
+   "mean": 23.42,
+   "p90": 48.9,
+   "calls_per_transport": 1.36,
+   "unfinished": 176
+  },
+  "blind": {
+   "ta_per_100_incidents": 6.9,
+   "ta_per_100_transports": 7.08,
+   "mean": 22.75,
+   "p90": 47.8,
+   "calls_per_transport": 1.4,
+   "unfinished": 155
+  },
+  "ours": {
+   "ta_per_100_incidents": 2.62,
+   "ta_per_100_transports": 2.68,
+   "mean": 21.97,
+   "p90": 44.0,
+   "calls_per_transport": 1.17,
+   "unfinished": 122
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -4.54,
+   "ta_ci95": [
+    -5.47,
+    -3.69
+   ],
+   "fewer": 84,
+   "tied": 12,
+   "more": 4,
+   "time_diff_min": -1.45,
+   "time_ci95": [
+    -1.94,
+    -0.97
+   ],
+   "faster": 67
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -4.25,
+   "ta_ci95": [
+    -5.37,
+    -3.23
+   ],
+   "fewer": 76,
+   "tied": 16,
+   "more": 8,
+   "time_diff_min": -0.79,
+   "time_ci95": [
+    -1.27,
+    -0.29
+   ],
+   "faster": 58
+  }
+ },
+ "refuse_at_3": {
+  "cond": "refuse_at_3",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 27.33,
+   "ta_per_100_transports": 27.58,
+   "mean": 22.46,
+   "p90": 47.0,
+   "calls_per_transport": 0.0,
+   "unfinished": 43
+  },
+  "phone": {
+   "ta_per_100_incidents": 8.58,
+   "ta_per_100_transports": 8.62,
+   "mean": 20.31,
+   "p90": 40.6,
+   "calls_per_transport": 1.38,
+   "unfinished": 20
+  },
+  "blind": {
+   "ta_per_100_incidents": 9.46,
+   "ta_per_100_transports": 9.51,
+   "mean": 20.26,
+   "p90": 40.6,
+   "calls_per_transport": 1.39,
+   "unfinished": 27
+  },
+  "ours": {
+   "ta_per_100_incidents": 3.92,
+   "ta_per_100_transports": 3.93,
+   "mean": 20.25,
+   "p90": 39.4,
+   "calls_per_transport": 1.16,
+   "unfinished": 8
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -4.43,
+   "ta_ci95": [
+    -5.93,
+    -3.1
+   ],
+   "fewer": 63,
+   "tied": 25,
+   "more": 12,
+   "time_diff_min": -0.05,
+   "time_ci95": [
+    -0.47,
+    0.36
+   ],
+   "faster": 57
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -5.27,
+   "ta_ci95": [
+    -7.02,
+    -3.72
+   ],
+   "fewer": 65,
+   "tied": 25,
+   "more": 10,
+   "time_diff_min": -0.01,
+   "time_ci95": [
+    -0.43,
+    0.41
+   ],
+   "faster": 56
+  }
+ },
+ "refuse_at_6": {
+  "cond": "refuse_at_6",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 12.63,
+   "ta_per_100_transports": 12.82,
+   "mean": 24.62,
+   "p90": 54.4,
+   "calls_per_transport": 0.0,
+   "unfinished": 68
+  },
+  "phone": {
+   "ta_per_100_incidents": 2.58,
+   "ta_per_100_transports": 2.6,
+   "mean": 23.29,
+   "p90": 50.4,
+   "calls_per_transport": 1.16,
+   "unfinished": 40
+  },
+  "blind": {
+   "ta_per_100_incidents": 1.3,
+   "ta_per_100_transports": 1.31,
+   "mean": 21.04,
+   "p90": 43.2,
+   "calls_per_transport": 1.25,
+   "unfinished": 22
+  },
+  "ours": {
+   "ta_per_100_incidents": 0.49,
+   "ta_per_100_transports": 0.49,
+   "mean": 20.5,
+   "p90": 40.0,
+   "calls_per_transport": 1.1,
+   "unfinished": 7
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -2.01,
+   "ta_ci95": [
+    -2.68,
+    -1.41
+   ],
+   "fewer": 46,
+   "tied": 53,
+   "more": 1,
+   "time_diff_min": -2.8,
+   "time_ci95": [
+    -3.49,
+    -2.14
+   ],
+   "faster": 73
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -0.8,
+   "ta_ci95": [
+    -1.22,
+    -0.44
+   ],
+   "fewer": 27,
+   "tied": 71,
+   "more": 2,
+   "time_diff_min": -0.54,
+   "time_ci95": [
+    -1.03,
+    -0.07
+   ],
+   "faster": 58
+  }
+ },
+ "small_fleet": {
+  "cond": "small_fleet",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 17.08,
+   "ta_per_100_transports": 17.86,
+   "mean": 21.72,
+   "p90": 45.9,
+   "calls_per_transport": 0.0,
+   "unfinished": 205
+  },
+  "phone": {
+   "ta_per_100_incidents": 3.96,
+   "ta_per_100_transports": 4.08,
+   "mean": 20.17,
+   "p90": 41.8,
+   "calls_per_transport": 1.23,
+   "unfinished": 137
+  },
+  "blind": {
+   "ta_per_100_incidents": 3.07,
+   "ta_per_100_transports": 3.15,
+   "mean": 19.75,
+   "p90": 40.6,
+   "calls_per_transport": 1.26,
+   "unfinished": 129
+  },
+  "ours": {
+   "ta_per_100_incidents": 1.58,
+   "ta_per_100_transports": 1.61,
+   "mean": 19.46,
+   "p90": 38.0,
+   "calls_per_transport": 1.12,
+   "unfinished": 90
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -2.28,
+   "ta_ci95": [
+    -2.97,
+    -1.57
+   ],
+   "fewer": 59,
+   "tied": 32,
+   "more": 9,
+   "time_diff_min": -0.72,
+   "time_ci95": [
+    -1.22,
+    -0.25
+   ],
+   "faster": 58
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -1.39,
+   "ta_ci95": [
+    -2.01,
+    -0.73
+   ],
+   "fewer": 44,
+   "tied": 44,
+   "more": 12,
+   "time_diff_min": -0.29,
+   "time_ci95": [
+    -0.75,
+    0.13
+   ],
+   "faster": 49
+  }
+ },
+ "random_diversion": {
+  "cond": "random_diversion",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 17.44,
+   "ta_per_100_transports": 19.06,
+   "mean": 29.55,
+   "p90": 68.9,
+   "calls_per_transport": 0.0,
+   "unfinished": 398
+  },
+  "phone": {
+   "ta_per_100_incidents": 13.87,
+   "ta_per_100_transports": 15.03,
+   "mean": 30.26,
+   "p90": 69.7,
+   "calls_per_transport": 1.45,
+   "unfinished": 364
+  },
+  "blind": {
+   "ta_per_100_incidents": 14.65,
+   "ta_per_100_transports": 14.91,
+   "mean": 26.32,
+   "p90": 54.6,
+   "calls_per_transport": 1.64,
+   "unfinished": 80
+  },
+  "ours": {
+   "ta_per_100_incidents": 11.54,
+   "ta_per_100_transports": 11.78,
+   "mean": 29.81,
+   "p90": 60.5,
+   "calls_per_transport": 1.58,
+   "unfinished": 95
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -2.44,
+   "ta_ci95": [
+    -3.85,
+    -0.99
+   ],
+   "fewer": 58,
+   "tied": 9,
+   "more": 33,
+   "time_diff_min": -0.46,
+   "time_ci95": [
+    -1.52,
+    0.6
+   ],
+   "faster": 49
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -3.18,
+   "ta_ci95": [
+    -4.62,
+    -1.64
+   ],
+   "fewer": 64,
+   "tied": 10,
+   "more": 26,
+   "time_diff_min": 3.48,
+   "time_ci95": [
+    2.7,
+    4.29
+   ],
+   "faster": 21
+  }
+ },
+ "noisy_gps": {
+  "cond": "noisy_gps",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 20.4,
+   "ta_per_100_transports": 20.57,
+   "mean": 23.16,
+   "p90": 48.8,
+   "calls_per_transport": 0.0,
+   "unfinished": 38
+  },
+  "phone": {
+   "ta_per_100_incidents": 5.62,
+   "ta_per_100_transports": 5.65,
+   "mean": 21.35,
+   "p90": 43.0,
+   "calls_per_transport": 1.27,
+   "unfinished": 25
+  },
+  "blind": {
+   "ta_per_100_incidents": 4.9,
+   "ta_per_100_transports": 4.92,
+   "mean": 20.72,
+   "p90": 40.9,
+   "calls_per_transport": 1.31,
+   "unfinished": 17
+  },
+  "ours": {
+   "ta_per_100_incidents": 2.41,
+   "ta_per_100_transports": 2.41,
+   "mean": 20.17,
+   "p90": 39.3,
+   "calls_per_transport": 1.14,
+   "unfinished": 13
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -3.13,
+   "ta_ci95": [
+    -3.9,
+    -2.4
+   ],
+   "fewer": 61,
+   "tied": 33,
+   "more": 6,
+   "time_diff_min": -1.17,
+   "time_ci95": [
+    -1.65,
+    -0.71
+   ],
+   "faster": 69
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -2.39,
+   "ta_ci95": [
+    -3.13,
+    -1.7
+   ],
+   "fewer": 50,
+   "tied": 46,
+   "more": 4,
+   "time_diff_min": -0.55,
+   "time_ci95": [
+    -0.98,
+    -0.11
+   ],
+   "faster": 60
+  }
+ },
+ "wrong_answers": {
+  "cond": "wrong_answers",
+  "cities": 100,
+  "nearest": {
+   "ta_per_100_incidents": 20.4,
+   "ta_per_100_transports": 20.57,
+   "mean": 23.16,
+   "p90": 48.8,
+   "calls_per_transport": 0.0,
+   "unfinished": 38
+  },
+  "phone": {
+   "ta_per_100_incidents": 11.16,
+   "ta_per_100_transports": 11.25,
+   "mean": 24.41,
+   "p90": 48.3,
+   "calls_per_transport": 1.66,
+   "unfinished": 38
+  },
+  "blind": {
+   "ta_per_100_incidents": 10.93,
+   "ta_per_100_transports": 10.99,
+   "mean": 23.73,
+   "p90": 46.7,
+   "calls_per_transport": 1.66,
+   "unfinished": 27
+  },
+  "ours": {
+   "ta_per_100_incidents": 4.94,
+   "ta_per_100_transports": 4.97,
+   "mean": 26.32,
+   "p90": 50.0,
+   "calls_per_transport": 1.83,
+   "unfinished": 31
+  },
+  "vs_phone": {
+   "ta_diff_per_100": -6.05,
+   "ta_ci95": [
+    -7.79,
+    -4.41
+   ],
+   "fewer": 76,
+   "tied": 8,
+   "more": 16,
+   "time_diff_min": 1.91,
+   "time_ci95": [
+    1.12,
+    2.68
+   ],
+   "faster": 31
+  },
+  "vs_blind": {
+   "ta_diff_per_100": -5.78,
+   "ta_ci95": [
+    -7.72,
+    -3.97
+   ],
+   "fewer": 65,
+   "tied": 17,
+   "more": 18,
+   "time_diff_min": 2.58,
+   "time_ci95": [
+    1.78,
+    3.38
+   ],
+   "faster": 24
+  }
+ }
+}
